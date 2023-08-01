@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Magne ZiS</title>
   <!-- <link rel="stylesheet" href="style.css" /> -->
+  <style>
+    .es-magne#es-magne .es-cross__content {
+      display: none;
+    }
+    @media (min-width: 576px) {
+      .es-magne#es-magne #crossCover {
+        display: none;
+    }
+    .es-magne#es-magne .es-cross__content {
+      display: block;
+    }
+  }
+  </style>
 </head>
 
 <body>
@@ -265,12 +278,11 @@
       <div class="es-cross__wrapper">
         <p class="es-cross__title">RODZINA Magne&nbsp;B<sub>6</sub><sup>®</sup></p>
 
-        <details class="es-cross__content" id="desktopShow">
-            <summary class="es-cross__packshot es-hide">
+            <div class="es-cross__packshot es-hide" id="crossCover">
               <img src="https://dl.dropboxusercontent.com/s/7nxij93h40xc34f/cross.png?dl=0" alt="" class="es-cross__img" />
-              <div class="es-cross__link es-cross__link--main es-hide">Poznaj wszystkie produkty</div>
-            </summary>
-          <div class="es-cross__content">
+              <p class="es-cross__link es-cross__link--main" id="btnShowCross">Poznaj wszystkie produkty</p>
+            </div>
+          <div class="es-cross__content es-mobile-hidden">
             <p class="es-cross__subtitle">Sprawdź leki bez recepty</p>
             <div class="es-cross__products">
               <div class="es-cross__product">
@@ -308,7 +320,6 @@
               </div>
             </div>
           </div>
-        </details>
 
 
       </div>
@@ -407,34 +418,30 @@
     </div>
   </div>
   <script>
-      function handleScreenResize() {
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    let detailsElement = document.getElementById("desktopShow");
+      let btn = document.getElementById('btnShowCross');
+      let content = document.querySelector('.es-cross .es-cross__content');
+      let mobileCross = document.getElementById('crossCover');
 
-    if (screenWidth > 576) {
-      detailsElement.open = true;
-    } else {
-      detailsElement.open = false;
-    }
-  }
+      showContent = () => {
+        content.style = 'display: block';
+        mobileCross.style = 'display: none';
+      }
 
-  // Initial call to handle screen resize
-  handleScreenResize();
+      btn.addEventListener('click', showContent);
 
-  // Event listener for screen resize
-  window.addEventListener("resize", handleScreenResize);
+
 
   function getStyles(href) {
-    var head = document.getElementsByTagName("head")[0];
-    var link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.type = "text/css";
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
     link.href = href;
     head.appendChild(link);
   }
   document.onreadystatechange = function () {
-    if (document.readyState === "complete") {
-      getStyles("https://s3.eu-central-1.amazonaws.com/cdn.rc-eu-central2.nexus.estorelabs.com/public/static/230322-SF-23-Magne-ZiS-ZAWISZA/styles.css?dl=0");
+    if (document.readyState === 'complete') {
+      getStyles('https://s3.eu-central-1.amazonaws.com/cdn.rc-eu-central2.nexus.estorelabs.com/public/static/230322-SF-23-Magne-ZiS-ZAWISZA/styles.css?dl=0');
     }
   };
 </script>
